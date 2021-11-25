@@ -1,0 +1,33 @@
+//Fonts
+@import url("https://fonts.googleapis.com/css2?family=Recursive&display=swap");
+
+// Import libraries here 👇🏻
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/grid";
+
+// Reset
+@import "reset.css";
+
+// Utils
+@import "./utils/variables";
+@import "./utils/mixins";
+
+// Layouts
+@import "./layouts/layout-primary";
+
+// Components
+@import "./components/NavBar";
+
+
+
+
+body {
+  font-family: Recisive,
+    // 👈🏻 replace with the font family
+      -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
