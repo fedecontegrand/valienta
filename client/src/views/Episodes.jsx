@@ -23,7 +23,14 @@ export default function Episodes() {
      },[filters,page])
  
      function handleChange(e){
-         setFilters((filters)=>({
+         setPage(1)
+         if(e.target.name==="episode" && !e.target.value){
+            setFilters((filters)=>({
+                ...filters,
+                [e.target.name]:"any"
+            }))    
+         }
+         else setFilters((filters)=>({
              ...filters,
              [e.target.name]:e.target.value
          }))
@@ -46,7 +53,7 @@ export default function Episodes() {
     return (
        <>
         <Filters handleChange={handleChange} filters={filters} type="episodes"/>
-        {episodes.length && episodes.map(ep=>(
+        {episodes.length ? episodes.map(ep=>(
         <div key={ep.id}>
             <h4>{ep.name} {ep.episode}</h4>
             <button name={ep.id} onClick={handleClick}>Ver personajes</button>
@@ -65,11 +72,11 @@ export default function Episodes() {
                            />
                         )}
                 </div>
-                </>) :<span>Cargando</span>
+                </>) :<span>Cargando..</span>
          
                 :null}
         </div>
-        )) }
+        )):<span>Cargando..</span> }
         <Footer handlePageChange={handlePageChange} page={page}/>
 
        </>

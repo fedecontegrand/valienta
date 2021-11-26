@@ -22,7 +22,7 @@ export function getAllEpisodes(page,filters){
     .then((res)=>{
       let results=res.data
       let finalResults=results
-      if(filters.episode!=="any") finalResults= results.filter(episode=>episode.episode===filters.episode) // filtro del front
+      if(filters.episode!=="any") finalResults= results.filter(episode=>episode.id==filters.episode) // filtro del front
       dispatch({type:GET_EPISODES,payload:finalResults})
     })
     .catch(err=>console.log(err))

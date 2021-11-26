@@ -37,11 +37,11 @@ export default function Filters({type,filters,handleChange}) {
                 <div className="filterDiv">
                     <div className="filter">
                         <label>Episodio (1-51):</label>
-                        <input type="number" max="51" min="1" onChange={handleChange}/>
+                        <input type="number" max="51" min="1" name="episode" onChange={handleChange} />
                     </div>
                     <div className="filter">
                         <label>Nombre del episodio:</label>
-                        <input type="text" placeholder="Ingresa el aqui el nombre..." onChange={handleChange}></input>
+                        <input type="text" name="name" placeholder="Ingresa el aqui el nombre..." onChange={handleChange}></input>
                     </div>
                 </div>
 
