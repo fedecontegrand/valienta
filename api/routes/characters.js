@@ -13,13 +13,12 @@ router.get('/:page', function(req, res, next) {
 
   gender!=="any" ? genderSt=`&gender=${gender}` : genderSt=""
   name!=="any" ? nameSt=`&name=${name}` : nameSt=""
-  status!=="any" ? statusSt=`&specis=${status}` : statusSt=""
+  status!=="any" ? statusSt=`&status=${status}` : statusSt=""
   
   let url=`https://rickandmortyapi.com/api/character?page=${page}${genderSt+nameSt+statusSt}`
 
   axios.get(url)
   .then(result=>{
-    console.log(result.data.results)
     res.json(result.data.results)}
   )
   .catch(err=>console.log(err))

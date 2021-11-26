@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CharacterCard from '../components/CharacterCard'
 import Filters from "../components/Filters"
-import { getCharacters } from '../redux/actions'
+import { getCharacters, setFilters } from '../redux/actions'
 import styles from "../styles/Characters.scss"
 
 export default function Characters() {
@@ -12,23 +12,26 @@ export default function Characters() {
        name:"any",
        status:"any"
     })
-
     const [page,setPage]=useState(1)
+    const dispatch=useDispatch()
 
     const characters=useSelector(state=>state.characters)
-
-    const dispatch=useDispatch()
 
     useEffect(()=>{
         dispatch(getCharacters(page,filters))
     },[filters,page])
 
-    console.log(characters)
+    function handleChange(e){
+        setFilters((filters)=>({
+            ...filters,
+            [e.target.name]:e.target.value
+        }))
+    }
 
 
     return (
       <>
-       <Filters setFilters={setFilters} filters={filters} type="characters"/>
+       <Filters handleChange={handleChange} filters={filters} type="characters"/>
        <div className="cardsDiv">
        {characters[0] ? characters.map(character=>(
            <CharacterCard 

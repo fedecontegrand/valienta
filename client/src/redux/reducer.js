@@ -1,4 +1,4 @@
-import { GET_CHARACTERS } from "./actions"
+import { GET_CHARACTERS, SET_FILTERS } from "./actions"
 
 const initialState = {
     characters:[],
@@ -11,7 +11,8 @@ export default (state = initialState, { type, payload }) => {
 
     case GET_CHARACTERS:
         return { ...state, characters:payload }
-
+    case SET_FILTERS:
+        return {...state,filters:payload}
     default:
         return state
     }

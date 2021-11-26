@@ -5,10 +5,12 @@ export default function CharacterCard({name,status,species,gender,image}) {
     return (
         <div className="card">
             <img src={image} alt="chimg"/>
-            <span>{name}</span>
-            <span>Status: {status}</span>
-            <span>Gender: {gender}</span>
-            <span>Species: {species}</span>
+            <span className="name">{name}</span>
+            <div className="tags">
+            <span>{status}</span>
+            <span>{gender}</span>
+            <span>{species}</span>
+            </div>
         </div>
     )
 }

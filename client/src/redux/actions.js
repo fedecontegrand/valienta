@@ -1,6 +1,7 @@
 import axios from "axios"
 
 export const GET_CHARACTERS="GET_CHARACTERS"
+export const SET_FILTERS="SET_FILTERS"
 
 export function getCharacters(page,filters){
     return (dispatch)=>{
@@ -9,5 +10,11 @@ export function getCharacters(page,filters){
           dispatch({payload:res.data,type:GET_CHARACTERS})  
         })
         .catch(err=>console.log(err))
+    }
+}
+export function setFilters(filters){
+    return {
+      type:SET_FILTERS,
+      payload:filters
     }
 }
