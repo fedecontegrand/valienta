@@ -3,10 +3,13 @@ import styles from "../styles/Filters.scss"
 
 export default function Filters({type,filters,handleChange}) {
    
-    if(type==="characters"){
+
         return (
             <div className="filterContainer">
-            <div className="filterDiv">
+
+            {type==="characters" ? (
+
+             <div className="filterDiv">
                 <div className="filter">
                 <label>Gender:</label>
                 <select defaultValue={filters.gender} name="gender"  onChange={handleChange}>
@@ -27,9 +30,26 @@ export default function Filters({type,filters,handleChange}) {
                     <option value="dead">Dead</option>
                     <option value="unknown">Unknown</option>
                 </select>
+                </div> 
                 </div>
-            </div>
+
+            ):type==="episodes" ? (
+                <div className="filterDiv">
+                    <div className="filter">
+                        <label>Episodio (1-51):</label>
+                        <input type="number" max="51" min="1" onChange={handleChange}/>
+                    </div>
+                    <div className="filter">
+                        <label>Nombre del episodio:</label>
+                        <input type="text" placeholder="Ingresa el aqui el nombre..." onChange={handleChange}></input>
+                    </div>
+                </div>
+
+            ):(
+                <div className="filterDiv">
+
+                </div>
+            )}
             </div>
         )
-    }
 }
