@@ -5,6 +5,9 @@ export const SET_FILTERS="SET_FILTERS"
 export const GET_EPISODES="GET_EPISODES"
 export const GET_EPISODES_CHARACTERS="GET_EPISODES_CHARACTERS"
 export const CLOSE_EPISODES_CHARACTERS="CLOSE_EPISODES_CHARACTERS"
+export const GET_ALL_LOCATIONS="GET_ALL_LOCATIONS"
+export const GET_LOCATION_CHARACTERS="GET_LOCATION_CHARACTERS"
+export const CLOSE_LOCATION_CHARACTERS="CLOSE_LOCATION_CHARACTERS"
 
 export function getCharacters(page,filters){
     return (dispatch)=>{
@@ -41,4 +44,28 @@ export function getCharactersOfEpisode(episodeId){
 
 export function closeCharactersofEpisode(){
   return {type:CLOSE_EPISODES_CHARACTERS,payload:null}
+}
+
+export function getAllLocations(page,filters){
+  return (dispatch)=>{
+    axios.get(`http://localhost:3001/locations/${page}?type=${filters.type}&dimension=${filters.dimension}`)
+    .then(result=>{
+      dispatch({type:GET_ALL_LOCATIONS,payload:result.data})
+    })
+    .catch(err=>console.log("Error al traer todas las ubicaciones"))
+  }
+}
+
+export function getCharactersOfLocation(locationId){
+  return (dispatch)=>{
+    axios.get(`http://localhost:3001/charOfLocation?locationId=${locationId}`)
+    .then(res=>{
+      dispatch({type:GET_LOCATION_CHARACTERS,payload:res.data})
+    })
+    .catch(err=>console.log(err))
+  }
+}
+
+export function closeCharactersofLocation(){
+  return {type:CLOSE_LOCATION_CHARACTERS,payload:null}
 }

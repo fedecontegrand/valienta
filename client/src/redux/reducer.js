@@ -1,10 +1,12 @@
-import { CLOSE_EPISODES_CHARACTERS, GET_CHARACTERS, GET_EPISODES, GET_EPISODES_CHARACTERS, SET_FILTERS } from "./actions"
+import { CLOSE_EPISODES_CHARACTERS, CLOSE_LOCATION_CHARACTERS, GET_ALL_LOCATIONS, GET_CHARACTERS, GET_EPISODES, GET_EPISODES_CHARACTERS, GET_LOCATION_CHARACTERS, SET_FILTERS } from "./actions"
 
 const initialState = {
     characters:[],
     filters:{},
     episodes:[],
-    charactersOfEpisode:[]
+    charactersOfEpisode:[],
+    allLocations:[],
+    locationCharacters:[]
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -20,6 +22,12 @@ export default (state = initialState, { type, payload }) => {
         return {...state,charactersOfEpisode:payload}
     case CLOSE_EPISODES_CHARACTERS:
         return {...state,charactersOfEpisode:[]}
+    case GET_ALL_LOCATIONS:
+        return {...state,allLocations:payload}
+    case GET_LOCATION_CHARACTERS:
+        return {...state,locationCharacters:payload}
+    case CLOSE_LOCATION_CHARACTERS:
+        return {...state,locationCharacters:[]}
     default:
         return state
     }

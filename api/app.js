@@ -7,7 +7,9 @@ const cors=require("cors")
 
 var characters = require('./routes/characters');
 var episodes = require('./routes/episodes');
+var locations = require('./routes/locations');
 var charOfEpisode = require('./routes/charOfEpisode');
+var charOfLocation = require('./routes/charOfLocation');
 
 var app = express();
 
@@ -36,6 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/characters', characters);
 app.use('/episodes', episodes);
 app.use('/charOfEpisode', charOfEpisode);
+app.use('/locations', locations);
+app.use('/charOfLocation', charOfLocation);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

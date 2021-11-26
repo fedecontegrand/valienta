@@ -16,6 +16,8 @@ export default function Filters({type,filters,handleChange}) {
                     <option value="any" >Any</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
+                    <option value="genderless">Genderless</option>
+                    <option value="unknown">Unkwnown</option>
                 </select>
                 </div>
                 <div className="filter">
@@ -47,7 +49,18 @@ export default function Filters({type,filters,handleChange}) {
 
             ):(
                 <div className="filterDiv">
-
+                 <div className="filter">
+                     <label>Name:</label>
+                     <input type="text" name="name"  onChange={handleChange}/>
+                 </div>
+                 <div className="filter">
+                     <label>Type:</label>
+                     <input type="text" name="type" onChange={handleChange} />
+                 </div>
+                 <div className="filter">
+                     <label>Dimension:</label>
+                     <input type="text" name="dimension"  onChange={handleChange}/>
+                 </div>
                 </div>
             )}
             </div>
