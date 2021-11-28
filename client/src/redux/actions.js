@@ -21,14 +21,25 @@ export function getCharacters(page,filters){
 
 export function getAllEpisodes(page,filters){
   return (dispatch)=>{
-    axios.get(`http://localhost:3001/episodes/${page}?name=${filters.name}`)  //filtro del back
-    .then((res)=>{
-      let results=res.data
-      let finalResults=results
-      if(filters.episode!=="any") finalResults= results.filter(episode=>episode.id==filters.episode) // filtro del front
-      dispatch({type:GET_EPISODES,payload:finalResults})
-    })
-    .catch(err=>console.log(err))
+    if(filters.episode==="any"){
+      axios.get(`http://localhost:3001/episodes/${page}?name=${filters.name}`)  //filtro del back
+      .then((res)=>{
+        console.log("Entro al back")
+        let results=res.data
+        let finalResults=results
+        if(filters.episode!=="any") finalResults= results.filter(episode=>episode["id"]==filters.episode) // filtro del front
+        dispatch({type:GET_EPISODES,payload:finalResults})
+      })
+      .catch(err=>console.log(err))
+    }
+    else {
+      console.log("entro al front")
+      axios.get(`https://rickandmortyapi.com/api/episode/${filters.episode}`)
+      .then((res)=>{
+        dispatch({type:GET_EPISODES,payload:[res.data]})
+      })
+      .catch(err=>console.log(err))
+    }
   }
 }
 

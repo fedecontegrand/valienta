@@ -3,6 +3,8 @@ import Filters from '../components/Filters'
 import {useDispatch,useSelector} from "react-redux"
 import { closeCharactersofLocation, getAllLocations, getCharactersOfLocation } from '../redux/actions'
 import CharacterCard from '../components/CharacterCard'
+import Banner from '../components/Banner'
+import Footer from '../components/Footer'
 
 export default function Locations() {
 
@@ -33,6 +35,10 @@ export default function Locations() {
         }))
     }
 
+    function handlePageChange(e){
+        e.target.name==="next" ? setPage(page=>page+1) : setPage(page=>page-1)
+    }
+
     const handleClick=e=>{
         dispatch(closeCharactersofLocation())
         setActive(e.target.name)
@@ -48,15 +54,19 @@ export default function Locations() {
         <>
         <Filters handleChange={handleChange} filters={filters} type="locations"/>
         {allLocations.map(loc=>
-        <>
-            <h4>{loc.name}</h4>
-            <span>{loc.type}</span>
-            <span>{loc.dimension}</span>
-            <button onClick={handleClick} name={loc.id}>Ver personajes</button>
+        <div  key={loc.id} style={{display:"flex",flexDirection:"column",alignItems:"center"}}>  
+            <Banner 
+            id={loc.id}
+            title={loc.name}
+            subtitle1={loc.dimension}
+            subtitle2={loc.type}
+            active={active}
+            handleClick={handleClick}
+            handleClose={handleClose}
+            />
+            <div className="cardsDiv">
             {active ==loc.id ? (
                 <>
-                <button onClick={handleClose}>x</button>
-                <div className="cardsDiv">
                 {locationCharacters.length ? (
                     locationCharacters.map(char=>
                         <CharacterCard 
@@ -66,14 +76,17 @@ export default function Locations() {
                         species={char.species}
                         gender={char.gender}
                         image={char.image}
+                        origin={char.origin.name}
+                        location={char.location.name}
                         />
                         )
                     ):<span>Cargando...</span>}
+                </>    
+                ):null}
                 </div>
-                </>
-            ):null}
-        </>
+        </div>
         )}
+        <Footer handlePageChange={handlePageChange} page={page}/>
         </>
     )
 }

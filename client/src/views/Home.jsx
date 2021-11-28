@@ -11,9 +11,11 @@ export default function Home({children}) {
 
     const location=useLocation()   
     return (
+        <>
+        <Navbar />
         <div className="containerHome">
-            <Navbar />
             {children}
         </div>
+        </>
     )
 }

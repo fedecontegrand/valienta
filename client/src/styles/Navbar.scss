@@ -1,13 +1,30 @@
 nav{
+    width: 100vw;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 10rem;
     align-items: center;
+    background-color: darkslategrey;
+    padding: 0.5rem 0;
     a{
         text-decoration: none;
         color:grey
     }
+    img{
+        height:4rem;
+    }
+    .linksDiv{
+        font-size: 2.5rem;
+        display: flex;
+        column-gap: 10rem;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        justify-content: space-around;
+    }
 }
 
 .active{
-    color:darkslategrey
+    color:lightgray
 }

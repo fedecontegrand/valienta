@@ -43,6 +43,8 @@ export default function Characters() {
            name={character.name}
            status={character.status}
            gender={character.gender}
+           origin={character.origin.name}
+           location={character.location.name}
            species={character.species}
            />
        )):null}

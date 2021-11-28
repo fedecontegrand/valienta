@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from "../styles/CharacterCard.scss"
 
-export default function CharacterCard({name,status,species,gender,image}) {
+export default function CharacterCard({name,status,species,gender,image,origin,location}) {
+
     return (
         <div className="card">
             <img src={image} alt="chimg"/>
