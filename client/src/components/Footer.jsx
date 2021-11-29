@@ -8,9 +8,9 @@ export default function Footer({handlePageChange,page,limitPage}) {
     }
     return (
         <div className="footerDiv">
-            <button onClick={reactToClick} name="prev" disabled={page===1}>Anterior</button>
+            <button onClick={reactToClick} name="prev" disabled={page===1}>Previous</button>
             <span>{page}</span>
-            <button onClick={reactToClick} name="next" disabled={limitPage==page}>Siguiente</button>
+            <button onClick={reactToClick} name="next" disabled={limitPage==page}>Next</button>
         </div>
     )
 }

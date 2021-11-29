@@ -38,12 +38,12 @@ export default function Filters({type,filters,handleChange}) {
             ):type==="episodes" ? (
                 <div className="filterDiv">
                     <div className="filter">
-                        <label>Episodio (1-51):</label>
+                        <label>Episode (1-51):</label>
                         <input type="number"  min={1} max={51} name="episode" onChange={handleChange} />
                     </div>
                     <div className="filter">
-                        <label>Nombre del episodio:</label>
-                        <input type="text" name="name" placeholder="Ingresa el aqui el nombre..." onChange={handleChange}></input>
+                        <label>Episode's name:</label>
+                        <input type="text" name="name" placeholder="Search here your episode.." onChange={handleChange}></input>
                     </div>
                 </div>
 

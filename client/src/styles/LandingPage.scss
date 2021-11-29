@@ -11,22 +11,34 @@
 }
 
 .banner{
-  max-width: 40%;
-  backdrop-filter: blur(4px);
+  padding: 1rem;
+  max-width: 50%;
+  background-color: darkslategray;
+  color:lightslategray;
   display: flex;
   gap:1rem;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
-  border:1px solid gainsboro;
   border-radius: 10px;
-  padding: 0.3rem 1rem;
-  h2{
-      margin: 0.2rem 0 0 0;
-  }
-  button{
-      cursor: pointer;
-      background-color: white;
-      border-radius: 10px;
-      border:1px solid grey
-  }
+    h2{
+        font-family: 'Ubuntu Condensed', sans-serif;
+        font-size: 4rem;
+    }
+    p{
+         font-family: 'Lato', sans-serif; 
+         font-weight: 700;
+         font-size: 1.2rem;
+        color: whitesmoke;
+        }
+    button{
+        background-color: whitesmoke;
+        border-radius:1rem;
+        border:0;
+        width:10rem;
+        margin-top: 1rem;
+        color: darkslategray;
+        font-family: 'Ubuntu Condensed', sans-serif;
+
+    }
 }

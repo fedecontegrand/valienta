@@ -22,18 +22,16 @@ export function getCharacters(page,filters){
 export function getAllEpisodes(page,filters){
   return (dispatch)=>{
     if(filters.episode==="any"){
-      axios.get(`http://localhost:3001/episodes/${page}?name=${filters.name}`)  //filtro del back
+      axios.get(`http://localhost:3001/episodes/${page}?name=${filters.name}`)  //filtro del back (name)
       .then((res)=>{
-        console.log("Entro al back")
         let results=res.data
         let finalResults=results
         if(filters.episode!=="any") finalResults= results.filter(episode=>episode["id"]==filters.episode) // filtro del front
-        dispatch({type:GET_EPISODES,payload:finalResults})
+        dispatch({type:GET_EPISODES,payload:finalResults})                                                //     (id)
       })
       .catch(err=>console.log(err))
     }
     else {
-      console.log("entro al front")
       axios.get(`https://rickandmortyapi.com/api/episode/${filters.episode}`)
       .then((res)=>{
         dispatch({type:GET_EPISODES,payload:{results:[res.data],info:{pages:1}}})
@@ -58,12 +56,34 @@ export function closeCharactersofEpisode(){
 }
 
 export function getAllLocations(page,filters){
-  return (dispatch)=>{
-    axios.get(`http://localhost:3001/locations/${page}?type=${filters.type}&dimension=${filters.dimension}`)
-    .then(result=>{
-      dispatch({type:GET_ALL_LOCATIONS,payload:result.data})
-    })
-    .catch(err=>console.log("Error al traer todas las ubicaciones"))
+  return async(dispatch)=>{
+    if(filters.name==="any"){
+      axios.get(`http://localhost:3001/locations/${page}?type=${filters.type}&dimension=${filters.dimension}`) // filtro del back
+      .then(result=>{                                                                                          // (type,dimension)
+        dispatch({type:GET_ALL_LOCATIONS,payload:result.data})
+      })
+      .catch(err=>console.log("Error al traer todas las ubicaciones"))
+    }
+    else {
+      let allLocations=[]
+      let url=`https://rickandmortyapi.com/api/location/`
+       try {
+
+         let firstCall=await axios.get(url)
+         let numberOfPages=firstCall.data.info.pages
+         for(let i=1;i<=numberOfPages;i++){
+             let epsiodesOfPage=await axios.get(`${url}?page=${i}`)
+             allLocations=allLocations.concat(epsiodesOfPage.data.results)
+         } 
+         let filteredLocations=allLocations.filter(location=>location.name.toLowerCase().includes(filters.name.toLowerCase()))
+         if(filters.type!=="any") filteredLocations=filteredLocations.filter(location=>location.type.toLowerCase().includes(filters.type.toLowerCase()))
+         if(filters.dimension!=="any") filteredLocations=filteredLocations.filter(location=>location.dimension.toLowerCase().includes(filters.dimension.toLowerCase()))
+         dispatch({type:GET_ALL_LOCATIONS, payload:{results:filteredLocations,info:{pages:1}}})
+         
+     } catch (error) {
+        console.log(error)     
+     }
+    }
   }
 }
 

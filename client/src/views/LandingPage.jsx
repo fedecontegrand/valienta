@@ -7,9 +7,9 @@ export default function LandingPage() {
     return (
         <div className="container">
             <div className="banner">
-               <h2>Hola Dani</h2>
+               <h2>Hey Dani 👋</h2>
                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore quam excepturi reprehenderit odit perferendis est nostrum ullam! Voluptatem suscipit corrupti amet nesciunt quisquam, delectus, laudantium error deserunt id nisi corporis.</p> 
-               <button onClick={()=>navigate("/home")}>Entra</button>
+               <button onClick={()=>navigate("/home")}>Enter</button>
             </div>            
         </div>
     )

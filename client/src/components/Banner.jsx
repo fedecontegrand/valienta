@@ -8,7 +8,7 @@ export default function Banner({title,subtitle1,subtitle2,handleClick,id,handleC
         <span>{subtitle1}</span>
         <span>{subtitle2}</span>
         {active==id ? <button onClick={handleClose}>x</button> :
-        <button name={id} onClick={handleClick}>Ver personajes</button>}
+        <button name={id} onClick={handleClick}>See characters</button>}
         </div>
     )
 }
