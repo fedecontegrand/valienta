@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "../styles/Footer.scss"
 
-export default function Footer({handlePageChange,page}) {
+export default function Footer({handlePageChange,page,limitPage}) {
     const reactToClick=(e)=>{
       window.scrollTo({ top: 0, behavior: 'smooth' });
       handlePageChange(e)
@@ -9,7 +9,8 @@ export default function Footer({handlePageChange,page}) {
     return (
         <div className="footerDiv">
             <button onClick={reactToClick} name="prev" disabled={page===1}>Anterior</button>
-            <button onClick={reactToClick} name="next">Siguiente</button>
+            <span>{page}</span>
+            <button onClick={reactToClick} name="next" disabled={limitPage==page}>Siguiente</button>
         </div>
     )
 }

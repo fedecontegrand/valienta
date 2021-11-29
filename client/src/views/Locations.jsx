@@ -5,6 +5,7 @@ import { closeCharactersofLocation, getAllLocations, getCharactersOfLocation } f
 import CharacterCard from '../components/CharacterCard'
 import Banner from '../components/Banner'
 import Footer from '../components/Footer'
+import Spinner from '../components/Spinner'
 
 export default function Locations() {
 
@@ -18,7 +19,9 @@ export default function Locations() {
 
     const [page,setPage]=useState(1)
 
-    const allLocations=useSelector(state=>state.allLocations)
+    const allLocations=useSelector(state=>state.allLocations.results)
+
+    const limitPage=useSelector(state=>state.allLocations?.info?.pages)
 
     const locationCharacters=useSelector(state=>state.locationCharacters)
 
@@ -53,7 +56,7 @@ export default function Locations() {
     return (
         <>
         <Filters handleChange={handleChange} filters={filters} type="locations"/>
-        {allLocations.map(loc=>
+        {allLocations ? allLocations.map(loc=>
         <div  key={loc.id} style={{display:"flex",flexDirection:"column",alignItems:"center"}}>  
             <Banner 
             id={loc.id}
@@ -80,13 +83,13 @@ export default function Locations() {
                         location={char.location.name}
                         />
                         )
-                    ):<span>Cargando...</span>}
+                    ):<Spinner/>}
                 </>    
                 ):null}
                 </div>
         </div>
-        )}
-        <Footer handlePageChange={handlePageChange} page={page}/>
+        ): <Spinner/>}
+        {allLocations ? <Footer handlePageChange={handlePageChange} page={page} limitPage={limitPage}/>:null}
         </>
     )
 }

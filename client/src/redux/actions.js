@@ -36,7 +36,7 @@ export function getAllEpisodes(page,filters){
       console.log("entro al front")
       axios.get(`https://rickandmortyapi.com/api/episode/${filters.episode}`)
       .then((res)=>{
-        dispatch({type:GET_EPISODES,payload:[res.data]})
+        dispatch({type:GET_EPISODES,payload:{results:[res.data],info:{pages:1}}})
       })
       .catch(err=>console.log(err))
     }

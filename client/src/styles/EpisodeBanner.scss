@@ -10,8 +10,22 @@
     border-radius: 1rem;
     width: 80%;
     min-width: fit-content;
+    h4,button{
+        font-family: 'Ubuntu Condensed', sans-serif;;
+    }
+    span{
+        font-family: 'Lato', sans-serif; 
+    }
     h4 , span{
         width: 10rem;
+    }
+
+    button{
+        background-color: whitesmoke;
+        border:0;
+        padding: 0.25rem;
+        border-radius: 10px;
+        min-width: 2rem;
     }
 }
 

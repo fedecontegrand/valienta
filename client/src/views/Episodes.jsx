@@ -4,6 +4,7 @@ import CharacterCard from '../components/CharacterCard'
 import Banner from '../components/Banner'
 import Filters from '../components/Filters'
 import Footer from '../components/Footer'
+import Spinner from '../components/Spinner'
 import { closeCharactersofEpisode, getAllEpisodes, getCharactersOfEpisode } from '../redux/actions'
 
 export default function Episodes() {
@@ -16,7 +17,9 @@ export default function Episodes() {
      const [page,setPage]=useState(1)
      const dispatch=useDispatch()
  
-     const episodes=useSelector(state=>state.episodes)
+     const episodes=useSelector(state=>state.episodes?.results)
+     const limitPage=useSelector(state=>state.episodes?.info?.pages)
+
      const charactersOfEpisode=useSelector(state=>state.charactersOfEpisode)
 
      useEffect(()=>{
@@ -55,7 +58,7 @@ export default function Episodes() {
     return (
        <>
         <Filters handleChange={handleChange} filters={filters} type="episodes"/>
-        {episodes.length ? episodes.map(ep=>(
+        {episodes ? episodes.map(ep=>(
             <div key={ep.id} style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
             <Banner
              id={ep.id}
@@ -81,12 +84,12 @@ export default function Episodes() {
                     location={char.location.name}
                     />
                     )
-                    ) :<span>Cargando..</span>
+                    ) :<Spinner/>
                     :null}
             </div>
             </div>
-            )):<span>Cargando..</span> }
-        <Footer handlePageChange={handlePageChange} page={page}/>
+            )):<Spinner/>}
+            {episodes ? <Footer handlePageChange={handlePageChange} page={page} limitPage={limitPage}/>:null}
        </>
     )
 }

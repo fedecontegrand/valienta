@@ -16,7 +16,7 @@ router.get('/:page', function(req, res, next) {
 
     axios.get(url)
     .then(result=>{
-        res.json(result.data.results)
+        res.json(result.data)
     })
     .catch(err=>console.log(err))
 });

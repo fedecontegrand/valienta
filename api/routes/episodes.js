@@ -11,7 +11,7 @@ router.get('/:page', function(req, res, next) {
   let url=`https://rickandmortyapi.com/api/episode?page=${page}${nameSt}`
     axios.get(url)
     .then(result=>{
-      res.json(result.data.results)}
+      res.json(result.data)}
     )
     .catch(err=>console.log(err))
 

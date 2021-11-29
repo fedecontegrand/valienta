@@ -7,9 +7,11 @@ nav{
     align-items: center;
     background-color: darkslategrey;
     padding: 0.5rem 0;
+    box-shadow: -10px -5px -5px black;
     a{
         text-decoration: none;
-        color:grey
+        color:grey;
+        font-family: 'Ubuntu Condensed', sans-serif;
     }
     img{
         height:4rem;
