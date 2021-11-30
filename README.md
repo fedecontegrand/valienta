@@ -1,4 +1,5 @@
 # Rick & Morty App
+<img src="https://github.com/fedecontegrand/valienta/blob/master/landingRick.jpg" alt="img"/>
 
 <h2>To run the proyect:</h2>
 <ul>
