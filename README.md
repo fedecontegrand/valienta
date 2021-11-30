@@ -1,5 +1,6 @@
 # Rick & Morty App
 
 <h2>Para correr el proyecto:</h2>
-<> backend: cd api => npm start</>
-<># frontend: cd client => npm run dev</>
+<ul>
+  <li><h4> cd api => npm start</h4> </li>
+  <li><h4> cd client => npm run dev </h4> </li>
