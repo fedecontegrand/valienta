@@ -57,7 +57,7 @@ export default function Characters() {
            species={character.species}
            />))     
            :errorCharacters? (
-               <h2>{errorCharacters}</h2>
+               <h2 className="emptyResult">{errorCharacters}</h2>
            ):<Spinner/>}
        </div>
         {characters ? <Footer handlePageChange={handlePageChange} page={page} limitPage={limitPage}/>:null}

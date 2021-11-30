@@ -90,13 +90,13 @@ export default function Episodes() {
                     />
                     )
                     ) : errorCharacterOfEpisode ? (
-                        <h2>{errorCharacterOfEpisode}</h2>
+                        <h2 className="emptyResult">{errorCharacterOfEpisode}</h2>
                     ):<Spinner/>
                     :null}
             </div>
             </div>
             )): episodesError? (
-                <h2>{episodesError}</h2>
+                <h2 className="emptyResult">{episodesError}</h2>
             ):<Spinner/>}
             {episodes ? <Footer handlePageChange={handlePageChange} page={page} limitPage={limitPage}/>:null}
        </>

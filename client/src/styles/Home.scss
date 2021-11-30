@@ -17,6 +17,13 @@
     border-radius: 50%;
     
 }
+
+.emptyResult{
+  font-family: 'Ubuntu Condensed', sans-serif;;
+  font-size: 2rem;
+  margin-top: 1rem;
+  
+}
 @keyframes spin {
         0% {
           transform: rotate(0deg);
