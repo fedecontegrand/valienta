@@ -8,8 +8,8 @@ export default function CharacterCard({name,status,species,gender,image,origin,l
             <img src={image} alt="chimg"/>
             <span className="name">{name}</span>
             <div className="tags">
-            <span>{status}</span>
-            <span>{gender}</span>
+            <span><div className={status}/>{status}</span>
+            <span><div className={gender}/>{gender}</span>
             <span>{species}</span>
             </div>
         </div>
