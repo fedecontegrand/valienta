@@ -39,6 +39,7 @@ export default function Locations() {
     },[filters,page])
 
     const handleChange=e=>{
+        setPage(1)
         if(e.target.name==="name" && e.target.value===""){
             setFilters(filters=>({...filters,name:"any"}))
         }

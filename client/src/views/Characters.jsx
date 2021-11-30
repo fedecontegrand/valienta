@@ -30,6 +30,7 @@ export default function Characters() {
     },[filters,page])
 
     function handleChange(e){
+        setPage(1)
         dispatch(clearCharacters())
         setFilters((filters)=>({
             ...filters,
