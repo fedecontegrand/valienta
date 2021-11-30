@@ -2,8 +2,8 @@
 
 <h2>To run the proyect:</h2>
 <ul>
-  <li><h4> cd api => npm start</h4> </li>
-  <li><h4> cd client => npm run dev </h4> </li>
+  <li><h4> Backend: cd api => npm start</h4> </li>
+  <li><h4> Frontend: cd client => npm run dev </h4> </li>
   
   <h2>Context</h2>
   
