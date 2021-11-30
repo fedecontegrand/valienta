@@ -94,14 +94,14 @@ export default function Locations() {
                         />
                         )
                     ):locationCharactersError ? (
-                        <h2>{locationCharactersError}</h2>
+                        <h2 className="emptyResult">{locationCharactersError}</h2>
                     ):<Spinner/>}
                 </>    
                 ):null}
                 </div>
         </div>
         ): locationsError ? (
-            <h2>{locationsError}</h2>
+            <h2 className="emptyResult">{locationsError}</h2>
         ):<Spinner/>}
         {allLocations ? <Footer handlePageChange={handlePageChange} page={page} limitPage={limitPage}/>:null}
         </>
