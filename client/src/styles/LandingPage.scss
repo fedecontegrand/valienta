@@ -21,26 +21,24 @@
   justify-content: center;
   flex-direction: column;
   border-radius: 10px;
-    h2{
+    .landingTitle{
         font-family: 'Ubuntu Condensed', sans-serif;
-        font-size: 4rem;
+        font-size: 3rem;
     }
     li{
         margin-bottom: 1rem;
         margin-left: 10px;
     }
-    p{
+    .landingText{
          font-family: 'Lato', sans-serif; 
          font-weight: 700;
-         font-size: 1.2rem;
-        color: whitesmoke;
+         color: whitesmoke;
         }
     button{
         background-color: whitesmoke;
         border-radius:1rem;
         border:0;
         width:10rem;
-        margin-top: 1rem;
         color: darkslategray;
         font-family: 'Ubuntu Condensed', sans-serif;
 
