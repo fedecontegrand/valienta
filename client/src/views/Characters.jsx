@@ -4,7 +4,7 @@ import CharacterCard from '../components/CharacterCard'
 import Filters from "../components/Filters"
 import Footer from '../components/Footer'
 import Spinner from '../components/Spinner'
-import { getCharacters } from '../redux/actions'
+import { clearCharacters, getCharacters } from '../redux/actions'
 import styles from "../styles/Characters.scss"
 
 export default function Characters() {
@@ -18,14 +18,19 @@ export default function Characters() {
     const dispatch=useDispatch()
 
     const characters=useSelector(state=>state.characters?.results)
+    const errorCharacters=useSelector(state=>state.characters?.error)
     const limitPage=useSelector(state=>state.characters?.info?.pages)
 
 
     useEffect(()=>{
         dispatch(getCharacters(page,filters))
+        return ()=>{
+            dispatch(clearCharacters())
+        }
     },[filters,page])
 
     function handleChange(e){
+        dispatch(clearCharacters())
         setFilters((filters)=>({
             ...filters,
             [e.target.name]:e.target.value
@@ -33,6 +38,7 @@ export default function Characters() {
     }
 
     function handlePageChange(e){
+        dispatch(clearCharacters())
         e.target.name==="next" ? setPage(page=>page+1) : setPage(page=>page-1)
     }
     return (
@@ -50,7 +56,9 @@ export default function Characters() {
            location={character.location.name}
            species={character.species}
            />))     
-           :<Spinner/>}
+           :errorCharacters? (
+               <h2>{errorCharacters}</h2>
+           ):<Spinner/>}
        </div>
         {characters ? <Footer handlePageChange={handlePageChange} page={page} limitPage={limitPage}/>:null}
       </>

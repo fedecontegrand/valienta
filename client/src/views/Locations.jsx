@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Filters from '../components/Filters'
 import {useDispatch,useSelector} from "react-redux"
-import { closeCharactersofLocation, getAllLocations, getCharactersOfLocation } from '../redux/actions'
+import { clearLocations, closeCharactersofLocation, getAllLocations, getCharactersOfLocation } from '../redux/actions'
 import CharacterCard from '../components/CharacterCard'
 import Banner from '../components/Banner'
 import Footer from '../components/Footer'
@@ -21,14 +21,21 @@ export default function Locations() {
 
     const allLocations=useSelector(state=>state.allLocations.results)
 
+    const locationsError=useSelector(state=>state.allLocations?.error)
+
     const limitPage=useSelector(state=>state.allLocations?.info?.pages)
 
     const locationCharacters=useSelector(state=>state.locationCharacters)
+
+    const locationCharactersError=useSelector(state=>state.locationCharacters?.error)
 
     const dispatch=useDispatch()
 
     useEffect(()=>{
         dispatch(getAllLocations(page,filters))
+        return ()=>{
+            dispatch(clearLocations())
+        }
     },[filters,page])
 
     const handleChange=e=>{
@@ -86,12 +93,16 @@ export default function Locations() {
                         location={char.location.name}
                         />
                         )
+                    ):locationCharactersError ? (
+                        <h2>{locationCharactersError}</h2>
                     ):<Spinner/>}
                 </>    
                 ):null}
                 </div>
         </div>
-        ): <Spinner/>}
+        ): locationsError ? (
+            <h2>{locationsError}</h2>
+        ):<Spinner/>}
         {allLocations ? <Footer handlePageChange={handlePageChange} page={page} limitPage={limitPage}/>:null}
         </>
     )

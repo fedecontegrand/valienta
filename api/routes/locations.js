@@ -18,7 +18,7 @@ router.get('/:page', function(req, res, next) {
     .then(result=>{
         res.json(result.data)
     })
-    .catch(err=>console.log(err))
+    .catch(err=>res.status(404).send(`${err.response.data.error}`))
 });
 
 module.exports = router;
