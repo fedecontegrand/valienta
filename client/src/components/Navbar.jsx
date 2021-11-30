@@ -10,9 +10,9 @@ export default function Navbar() {
                 <img src={logo} alt="logo"/>
             </div>
             <div className="linksDiv">
-            <NavLink to="/home" activeClassName="active">Home</NavLink>
-            <NavLink to="/episodes" activeClassName="active">Episodes</NavLink>
-            <NavLink to="/locations" activeClassName="active">Locations</NavLink>
+            <NavLink to="/home" activeclassname="active">Home</NavLink>
+            <NavLink to="/episodes" activeclassname="active">Episodes</NavLink>
+            <NavLink to="/locations" activeclassname="active">Locations</NavLink>
             </div>
         </nav>
     )

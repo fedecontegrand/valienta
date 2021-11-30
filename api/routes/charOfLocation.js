@@ -10,15 +10,15 @@ router.get('/',async function(req, res, next) {
          let allCharactersResponse=[]
     
          let allCharacters=await axios.get(url)
-    
          for(let i=0;i<allCharacters.data.residents.length;i++){
              let charData=await axios.get(allCharacters.data.residents[i])
              allCharactersResponse.push(charData.data)
          } 
-         res.json(allCharactersResponse)
+         if(!allCharactersResponse.length) res.status(404).send("There is nothing here")
+         else res.json(allCharactersResponse)
          
      } catch (error) {
-        console.log(error)     
+        res.status(404).send(`Error on getting characters of location`)    
      }
 });
 

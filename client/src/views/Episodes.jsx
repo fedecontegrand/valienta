@@ -5,7 +5,7 @@ import Banner from '../components/Banner'
 import Filters from '../components/Filters'
 import Footer from '../components/Footer'
 import Spinner from '../components/Spinner'
-import { closeCharactersofEpisode, getAllEpisodes, getCharactersOfEpisode } from '../redux/actions'
+import { clearEpisodes, closeCharactersofEpisode, getAllEpisodes, getCharactersOfEpisode } from '../redux/actions'
 
 export default function Episodes() {
     
@@ -18,12 +18,17 @@ export default function Episodes() {
      const dispatch=useDispatch()
  
      const episodes=useSelector(state=>state.episodes?.results)
+     const episodesError=useSelector(state=>state.episodes?.error)
      const limitPage=useSelector(state=>state.episodes?.info?.pages)
 
      const charactersOfEpisode=useSelector(state=>state.charactersOfEpisode)
+     const errorCharacterOfEpisode=useSelector(state=>state.charactersOfEpisode?.error)
 
      useEffect(()=>{
          dispatch(getAllEpisodes(page,filters))
+         return ()=>{
+             dispatch(clearEpisodes())
+         }
      },[filters,page])
  
      function handleChange(e){
@@ -84,11 +89,15 @@ export default function Episodes() {
                     location={char.location.name}
                     />
                     )
-                    ) :<Spinner/>
+                    ) : errorCharacterOfEpisode ? (
+                        <h2>{errorCharacterOfEpisode}</h2>
+                    ):<Spinner/>
                     :null}
             </div>
             </div>
-            )):<Spinner/>}
+            )): episodesError? (
+                <h2>{episodesError}</h2>
+            ):<Spinner/>}
             {episodes ? <Footer handlePageChange={handlePageChange} page={page} limitPage={limitPage}/>:null}
        </>
     )
