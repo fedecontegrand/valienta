@@ -1,6 +1,6 @@
 # Rick & Morty App
 <img src="https://github.com/fedecontegrand/valienta/blob/master/landingRick.jpg" alt="img"/>
-<a href="https://www.youtube.com/watch?v=SNJnxo4_MiA&t=17s" target="_blank"><h2>See App's video</h2> </a>
+<a href="https://www.youtube.com/watch?v=SNJnxo4_MiA&t=17s" target="_blank">See App's video</a>
 <h2>To run the proyect:</h2>
 <ul>
   <li><h4> Backend: cd api => npm start</h4> </li>
